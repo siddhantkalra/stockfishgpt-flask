@@ -33,3 +33,6 @@ All major changes, features, and fixes are documented here.
 
 ### 🔖 Commit: c4006d4 – June 07, 2025
 - 🔒 Removed hardcoded API key, finalizing legacy version
+
+### 🔖 Commit: 6567a9c – June 07, 2025
+- Update .gitignore to ignore __pycache__
