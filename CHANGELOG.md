@@ -18,3 +18,6 @@ All major changes, features, and fixes are documented here.
 
 ### 🔖 Commit: 6d959be – June 07, 2025
 - importing stockfish
+
+### 🔖 Commit: 31116e0 – June 07, 2025
+- stockfish changes
