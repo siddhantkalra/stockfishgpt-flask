@@ -1,4 +1,4 @@
-# StockfishGPT Flask Edition
+# StockfishGPT Flask Edition [ARCHIVED LEGACY]
 # ♟️ StockfishGPT (Flask Version)
 
 A lightweight chess game analyzer that combines the brute force of Stockfish with the language reasoning of GPT-4o.
