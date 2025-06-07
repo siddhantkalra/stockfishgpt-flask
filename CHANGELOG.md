@@ -36,3 +36,6 @@ All major changes, features, and fixes are documented here.
 
 ### 🔖 Commit: 6567a9c – June 07, 2025
 - Update .gitignore to ignore __pycache__
+
+### 🔖 Commit: f68361b – June 07, 2025
+- Final cleanup: ignore pycache, update changelog
