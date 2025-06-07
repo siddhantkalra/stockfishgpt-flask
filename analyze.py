@@ -7,7 +7,6 @@ from io import StringIO
 
 # Load from environment variables (set via Codespaces or secrets manager)
 openai.api_key = os.getenv("OPENAI_API_KEY")
-STOCKFISH_PATH = "/usr/games/stockfish"  # adjust path if needed
 
 def analyze_game(pgn_text):
     game = chess.pgn.read_game(StringIO(pgn_text))

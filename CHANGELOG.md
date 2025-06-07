@@ -15,3 +15,6 @@ All major changes, features, and fixes are documented here.
 
 ### 🔖 Commit: 19acde5 – June 07, 2025
 - one step core code dump
+
+### 🔖 Commit: 6d959be – June 07, 2025
+- importing stockfish
