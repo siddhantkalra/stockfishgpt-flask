@@ -8,15 +8,37 @@
         textarea { width: 100%; height: 200px; }
         .move-block { margin-bottom: 25px; background: #f8f8f8; padding: 15px; border-radius: 6px; }
         .eval { font-weight: bold; }
+        #board { margin: 20px auto; }
     </style>
+
+    <!-- ✅ CSS for chessboard.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css">
+
+    <!-- ✅ Required JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
 </head>
 <body>
     <h1>♟️ StockfishGPT — Chess Analyzer with GPT Commentary</h1>
+
     <form method="POST" enctype="multipart/form-data">
         <p><strong>📄 Upload PGN File:</strong></p>
         <input type="file" name="pgn_file" accept=".pgn" required>
         <button type="submit">Analyze</button>
     </form>
+
+    {% if final_fen %}
+        <h2>♟️ Interactive Final Board</h2>
+        <div id="board" style="width: 400px;"></div>
+        <script>
+            $(document).ready(function() {
+                Chessboard('board', {
+                    position: '{{ final_fen }}',
+                    draggable: false
+                });
+            });
+        </script>
+    {% endif %}
 
     {% if commentary %}
         <h2>⚠️ Mistakes & Inaccuracies</h2>

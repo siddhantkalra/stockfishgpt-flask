@@ -27,3 +27,9 @@ All major changes, features, and fixes are documented here.
 
 ### 🔖 Commit: 2193bda – June 07, 2025
 - 🔥 Removed unused engines/ directory
+
+### 🔖 Commit: a927456 – June 07, 2025
+- 🔒 Added .env to .gitignore to protect secrets
+
+### 🔖 Commit: c4006d4 – June 07, 2025
+- 🔒 Removed hardcoded API key, finalizing legacy version

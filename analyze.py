@@ -1,12 +1,13 @@
 import chess.pgn
 import chess.engine
-import openai
-import os
-STOCKFISH_PATH = os.path.join(os.getcwd(), "engines", "stockfish")
+from openai import OpenAI
 from io import StringIO
+import os
 
-# Load from environment variables (set via Codespaces or secrets manager)
-openai.api_key = os.getenv("OPENAI_API_KEY")
+import os
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+STOCKFISH_PATH = os.path.join(os.getcwd(), "stockfish", "stockfish")
 
 def analyze_game(pgn_text):
     game = chess.pgn.read_game(StringIO(pgn_text))
@@ -19,24 +20,25 @@ def analyze_game(pgn_text):
     move_number = 1
 
     for move in game.mainline_moves():
+        move_san = board.san(move)
         board.push(move)
+
         info = engine.analyse(board, chess.engine.Limit(depth=15))
         score = info["score"].white().score(mate_score=10000)
 
         if prev_eval is not None:
             delta = abs(score - prev_eval)
             if delta > 100:
-                comment = generate_commentary(board, move, prev_eval, score, move_number)
+                comment = generate_commentary(move_san, prev_eval, score, move_number, board.fen())
                 commentary.append(comment)
+
         prev_eval = score
         move_number += 1
 
     engine.quit()
     return commentary
 
-def generate_commentary(board, move, prev_eval, score, move_number):
-    fen = board.fen()
-    move_san = board.san(move)
+def generate_commentary(move_san, prev_eval, score, move_number, fen):
     prompt = f"""
 You're an expert chess coach. Evaluate the following:
 
@@ -46,8 +48,9 @@ You're an expert chess coach. Evaluate the following:
 
 Explain why the move was inaccurate and what could have been played better. Be concise but instructive.
 """
+
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4o",
             messages=[{"role": "user", "content": prompt}],
             max_tokens=300,
