@@ -2,6 +2,7 @@ import chess.pgn
 import chess.engine
 import openai
 import os
+STOCKFISH_PATH = os.path.join(os.getcwd(), "engines", "stockfish")
 from io import StringIO
 
 # Load from environment variables (set via Codespaces or secrets manager)
